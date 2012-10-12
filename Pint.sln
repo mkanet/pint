@@ -3,6 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pint", "Pint\Pint.csproj", "{BFE6A090-64A3-4D18-BABF-5137CE76E337}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PintTests", "PintTests\PintTests.csproj", "{63D08944-6A92-4E18-8EE8-98A074066DC5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{9EB6A0A5-7431-40F0-952D-364B883D0A42}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +20,10 @@ Global
 		{BFE6A090-64A3-4D18-BABF-5137CE76E337}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFE6A090-64A3-4D18-BABF-5137CE76E337}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BFE6A090-64A3-4D18-BABF-5137CE76E337}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63D08944-6A92-4E18-8EE8-98A074066DC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63D08944-6A92-4E18-8EE8-98A074066DC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63D08944-6A92-4E18-8EE8-98A074066DC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63D08944-6A92-4E18-8EE8-98A074066DC5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
