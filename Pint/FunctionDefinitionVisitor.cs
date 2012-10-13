@@ -9,35 +9,20 @@ namespace Pint
 {
     public class FunctionDefinitionVisitor : AstVisitor
     {
-        public IDictionary<string, List<FunctionInfo>> FunctionTable { get; private set; }
+        public FunctionTable FunctionTable { get; private set; }
 
         public FunctionDefinitionVisitor()
         {
-            FunctionTable = new Dictionary<string, List<FunctionInfo>>();
+            FunctionTable = new FunctionTable();
         }
         
-
         public override AstVisitAction VisitFunctionDefinition(FunctionDefinitionAst functionDefinitionAst)
         {
             string name = functionDefinitionAst.Name;
             FunctionInfo info = new FunctionInfo(functionDefinitionAst);
-            Add(name, info);
+            FunctionTable.Add(name, info);
             return base.VisitFunctionDefinition(functionDefinitionAst);
         }
 
-        public void Add(string name, FunctionInfo info)
-        {
-            List<FunctionInfo> current = null;
-            if (FunctionTable.TryGetValue(name, out current))
-            {
-                current.Add(info);
-            }
-            else
-            {
-                current = new List<FunctionInfo>();
-                current.Add(info);
-                FunctionTable[name] = current;
-            }
-        }
     }
 }

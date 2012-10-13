@@ -48,5 +48,21 @@ namespace PintTests
             List<FunctionInfo> fooFuncs = visitor.FunctionTable["foo"];
             Assert.Equal(2, fooFuncs.Count);
         }
+
+        [Fact]
+        public void GetFunctionDefinitions_TwoDifferent_FindsBoth()
+        {
+            ScriptBlockAst ast = Utilities.GetAst(
+                @"1+1; 
+                function foo() {}; 
+                function bar() { param([Parameter(Mandatory=$true)]$x) }");
+
+            FunctionDefinitionVisitor visitor = new FunctionDefinitionVisitor();
+            ast.Visit(visitor);
+
+            List<FunctionInfo> fooFuncs = visitor.FunctionTable["foo"];
+            Assert.Equal(1, fooFuncs.Count);
+            List<FunctionInfo> barFunds = visitor.FunctionTable["bar"];
+        }
     }
 }
