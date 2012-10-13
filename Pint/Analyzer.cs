@@ -9,16 +9,26 @@ namespace Pint
 {
     public class Analyzer
     {
+        public IEnumerable<object> Warnings {get; private set; }
+
+        public Analyzer()
+        {
+            Warnings = new List<object>();
+        }
+
         public void Load(string p)
         {
             Token[] tokens;
             ParseError[] errors;
-            Parser.ParseInput(p, out tokens, out errors);
+            var ast =  Parser.ParseInput(p, out tokens, out errors);            
 
             if (errors.Length != 0)
             {
                 throw new AnalyzerParseException(errors);
             }
+            
         }
     }
+
+
 }

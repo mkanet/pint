@@ -31,7 +31,19 @@ namespace PintTests
         [Fact]
         public void Analyzer_InvalidString_Throws()
         {
-            Assert.Throws<AnalyzerParseException>( () => a.Load("<<>>"));
+            AnalyzerParseException ex = Assert.Throws<AnalyzerParseException>( () => a.Load("<<>>"));
+            Assert.NotNull(ex.Errors);
+        }
+
+        [Fact]
+        public void Analyzer_FunctionCallMissingMandatory_Detected()
+        {
+            a.Load(@"
+                function foo() { param([Parameter(Mandatory=$true)][string]$A) $A }
+                foo
+            ");
+
+            //Assert.Equal(1, a.Warnings.ToList().Count);
         }
     }
 }
