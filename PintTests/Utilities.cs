@@ -10,13 +10,19 @@ namespace PintTests
 {
     public static class Utilities
     {
-        public static ScriptBlockAst GetAst(string func)
+        public static ScriptBlockAst GetAst(string block)
         {
             Token[] tokens;
             ParseError[] errors;
-            ScriptBlockAst ast = Parser.ParseInput(func, out tokens, out errors);
+            ScriptBlockAst ast = Parser.ParseInput(block, out tokens, out errors);
             Assert.Empty(errors);
             return ast;
+        }
+
+        public static FunctionDefinitionAst GetSingleFunctionAst(string definition)
+        {
+            ScriptBlockAst ast = Utilities.GetAst(definition);
+            return  (FunctionDefinitionAst)(ast.EndBlock.Statements[0]);
         }
     }
 }
