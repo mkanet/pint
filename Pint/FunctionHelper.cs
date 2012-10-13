@@ -23,5 +23,15 @@ namespace PintTests
                 arg.ArgumentName == "Mandatory" && 
                 ((VariableExpressionAst)(arg.Argument)).VariablePath.UserPath == "true");
         }
+
+        public static IEnumerable<string> MandatoryParameters(this FunctionDefinitionAst def)
+        {
+            if (def.Body.ParamBlock == null) yield break;
+
+            foreach(var param in def.Body.ParamBlock.Parameters.Where(IsMandatory))
+            {
+                yield return param.Name.VariablePath.UserPath;
+            }
+        }
     }
 }
