@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Management.Automation.Language;
 
-namespace PintTests
+namespace Pint
 {
     public static class FunctionHelper
     {
