@@ -32,5 +32,17 @@ namespace PintTests
             Assert.Equal(1, visitor.Calls.Count);
             Assert.Equal("foo", visitor.Calls[0].Target);
         }
+
+        [Fact]
+        public void FunctionCall_BoundParameters()
+        {
+            Ast ast = Utilities.GetAst(@"foo -A 1 -B");
+            FunctionCallVisitor visitor = new FunctionCallVisitor();
+
+            ast.Visit(visitor);
+            Assert.Equal(1, visitor.Calls.Count);
+            CallInfo info = visitor.Calls[0];
+            Assert.Equal(new[] { "A", "B" }, info.NamedParameters);
+        }
     }
 }

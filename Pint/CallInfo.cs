@@ -23,5 +23,19 @@ namespace Pint
                 return ((StringConstantExpressionAst)ast.CommandElements[0]).Value;
             }
         }
+
+        public IEnumerable<string> NamedParameters
+        {
+            get
+            {
+                foreach(CommandElementAst ce in ast.CommandElements.Skip(1))
+                {
+                    CommandParameterAst cp = ce as CommandParameterAst;
+                    if (null == cp) continue;
+                    yield return cp.ParameterName;
+                }
+                yield break;
+            }
+        }
     }
 }
