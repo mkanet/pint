@@ -51,9 +51,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnalyzerTests.cs" />
+    <Compile Include="FunctionCallVistorTests.cs" />
     <Compile Include="FunctionDefinitionVisitorTests.cs" />
     <Compile Include="FunctionHelperTests.cs" />
     <Compile Include="FunctionInfoTests.cs" />
+    <Compile Include="FunctionTableTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities.cs" />
   </ItemGroup>

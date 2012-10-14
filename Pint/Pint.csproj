@@ -48,9 +48,12 @@
   <ItemGroup>
     <Compile Include="Analyzer.cs" />
     <Compile Include="AnalyzerParseException.cs" />
+    <Compile Include="CallInfo.cs" />
+    <Compile Include="FunctionCallVisitor.cs" />
     <Compile Include="FunctionDefinitionVisitor.cs" />
     <Compile Include="FunctionHelper.cs" />
     <Compile Include="FunctionInfo.cs" />
+    <Compile Include="FunctionTable.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
