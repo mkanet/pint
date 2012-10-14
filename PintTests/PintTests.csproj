@@ -56,6 +56,7 @@
     <Compile Include="FunctionHelperTests.cs" />
     <Compile Include="FunctionInfoTests.cs" />
     <Compile Include="FunctionTableTests.cs" />
+    <Compile Include="MandatoryParametersPassedAnalyzerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities.cs" />
   </ItemGroup>

@@ -42,7 +42,7 @@ namespace PintTests
             ast.Visit(visitor);
             Assert.Equal(1, visitor.Calls.Count);
             CallInfo info = visitor.Calls[0];
-            Assert.Equal(new[] { "A", "B" }, info.NamedParameters);
+            Assert.Equal(new[] { "A", "B" }.ToList(), info.NamedParameters);
         }
     }
 }

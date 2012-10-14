@@ -14,6 +14,9 @@ namespace Pint
         public CallInfo(CommandAst ast)
         {
             this.ast = ast;
+            this.NamedParameters = new List<string>();
+            this.Splatted = false;
+            ProcessAst();
         }
 
         public string Target
@@ -24,18 +27,27 @@ namespace Pint
             }
         }
 
-        public IEnumerable<string> NamedParameters
+        public bool Splatted { get; private set; }
+        public IList<string> NamedParameters { get; private set; }
+
+        private void ProcessAst()
         {
-            get
+            foreach(CommandElementAst ce in ast.CommandElements.Skip(1))
             {
-                foreach(CommandElementAst ce in ast.CommandElements.Skip(1))
+                CommandParameterAst cp = ce as CommandParameterAst;
+                if (null != cp)
                 {
-                    CommandParameterAst cp = ce as CommandParameterAst;
-                    if (null == cp) continue;
-                    yield return cp.ParameterName;
+                    NamedParameters.Add(cp.ParameterName);
                 }
-                yield break;
-            }
-        }
+                else
+                {
+                    VariableExpressionAst ve = ce as VariableExpressionAst;
+                    if (null != ve && ve.Splatted)
+                    {
+                        Splatted = true;
+                    }
+                }
+            }            
+        }              
     }
 }
