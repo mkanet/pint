@@ -11,14 +11,6 @@ namespace PintTests
 {
     public class FunctionHelperTests
     {
-
-        public FunctionHelperTests()
-        {
-            
-        }
-
-        
-        
         [Fact]
         public void IsMandatory_OptionalParam_ReturnsFalse()
         {
@@ -85,13 +77,13 @@ namespace PintTests
         }
 
         [Fact]
-        public void GetMandatoryParams_OtherAttribute_Ignored()
+        public void GetMandatoryParams_TypeConstraintAttribute_Ignored()
         {
             FunctionDefinitionAst def = Utilities.GetSingleFunctionAst(
                 "function foo() { param([ValidateNotNull][Parameter(Mandatory=$true)]$x) }");
             var foundParams = def.MandatoryParameters().ToList();
             Assert.Equal(new[] { "x" }.ToList(), foundParams);
-        }
+        }        
 
         [Fact]
         public void GetMandatoryParams_TwoMandatoryOneOptionalParam_ReturnsNames()

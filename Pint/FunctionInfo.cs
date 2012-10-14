@@ -27,5 +27,12 @@ namespace Pint
         {
             this.ast = ast;
         }
+
+        public bool IsWorkflow {
+            get
+            {
+                return ast.IsWorkflow;
+            }
+        }
     }
 }

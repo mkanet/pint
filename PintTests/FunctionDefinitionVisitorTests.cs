@@ -64,5 +64,18 @@ namespace PintTests
             Assert.Equal(1, fooFuncs.Count);
             List<FunctionInfo> barFunds = visitor.FunctionTable["bar"];
         }
+
+        [Fact]
+        public void GetFunctionDefinitions_Workflow_Found()
+        {
+            ScriptBlockAst ast = Utilities.GetAst(@"workflow foo() {}; ");
+
+            FunctionDefinitionVisitor visitor = new FunctionDefinitionVisitor();
+            ast.Visit(visitor);
+
+            List<FunctionInfo> fooFuncs = visitor.FunctionTable["foo"];
+            Assert.Equal(1, fooFuncs.Count);
+            Assert.True(fooFuncs[0].IsWorkflow);
+        }
     }
 }
