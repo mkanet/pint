@@ -6,10 +6,12 @@ using System.Management.Automation.Language;
 
 namespace Pint
 {
+    [Serializable]
     public class AnalyzerException : Exception
     {
     }
 
+    [Serializable]
     public class AnalyzerParseException : AnalyzerException
     {
         public ParseError[] Errors { get; private set; }
