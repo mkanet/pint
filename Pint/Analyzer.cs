@@ -10,7 +10,7 @@ namespace Pint
     public class Analyzer
     {
         public IEnumerable<object> Warnings {get; private set; }
-
+        public ParseError[] Errors { get; private set; }
         public Analyzer()
         {
             Warnings = new List<object>();
@@ -20,13 +20,9 @@ namespace Pint
         {
             Token[] tokens;
             ParseError[] errors;
-            var ast =  Parser.ParseInput(p, out tokens, out errors);            
+            var ast =  Parser.ParseInput(p, out tokens, out errors);
 
-            if (errors.Length != 0)
-            {
-                throw new AnalyzerParseException(errors);
-            }
-            
+            Errors = errors;            
         }
     }
 

@@ -29,10 +29,10 @@ namespace PintTests
         }
 
         [Fact]
-        public void Analyzer_InvalidString_Throws()
+        public void Analyzer_InvalidString_DetectsError()
         {
-            AnalyzerParseException ex = Assert.Throws<AnalyzerParseException>( () => a.Load("<<>>"));
-            Assert.NotNull(ex.Errors);
+            a.Load("<<>>");
+            Assert.NotEmpty(a.Errors);
         }
 
         [Fact]

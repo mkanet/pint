@@ -49,6 +49,7 @@
     <Compile Include="AnalysisResults.cs" />
     <Compile Include="Analyzer.cs" />
     <Compile Include="AnalyzerParseException.cs" />
+    <Compile Include="Arguments.cs" />
     <Compile Include="CallInfo.cs" />
     <Compile Include="FunctionCallVisitor.cs" />
     <Compile Include="FunctionDefinitionVisitor.cs" />
