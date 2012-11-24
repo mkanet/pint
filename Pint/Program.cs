@@ -31,7 +31,7 @@ namespace Pint
                 Arguments arguments = new Arguments(args);
                 CheckFiles(arguments.FilesToProcess);
                 LogErrors();
-            }
+            }                
             catch(ArgumentException ex)
             {
                 WriteError(ex.Message);

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Management.Automation.Language;
+using System.Management.Automation;
 
 namespace Pint
 {
@@ -34,11 +35,34 @@ namespace Pint
         public void LoadFile(string fileName)
         {
             Token[] tokens;
-            ParseError[] localErrors;
-            var ast = Parser.ParseFile(fileName, out tokens, out localErrors);
+            ParseError[] localErrors=null;
 
-            errors.AddRange(localErrors);  
+            try
+            {
+                var ast = Parser.ParseFile(fileName, out tokens, out localErrors);
+                errors.AddRange(localErrors); 
+            }
+            catch (ParseException ex)
+            {
+                var pos = new ScriptPosition(fileName,0,0,"");
+                var err = new ParseError(new ScriptExtent(pos, pos), "FatalParserError", GetNestedMessage(ex));
+                errors.Add(err);
+            }             
         }
+
+        private string GetNestedMessage(Exception ex)
+        {
+            StringBuilder message = new StringBuilder();
+            message.Append(ex.Message);
+            while (ex.InnerException != null)
+            {
+                ex = ex.InnerException;
+                message.AppendFormat("--> {0}", ex.Message);
+            }
+            return message.ToString();
+        }
+
+
 
         public string FormatError(ParseError err)
         {

@@ -35,9 +35,12 @@ namespace PintTests
         }
 
         [Fact]
-        public void CheckFile_NoFile_Throws()
+        public void CheckFile_NoFile_RecordsError()
         {
-            Assert.Throws<ParseException>( () => p.CheckFile("nonexistent.txt"));
+            p.CheckFile("nonexistent.txt");
+            ParseError err = p.Analyzer.Errors.First();
+            Assert.Equal("FatalParserError", err.ErrorId);
+            Assert.Equal("nonexistent.txt", err.Extent.File);
         }
 
         [Fact]
