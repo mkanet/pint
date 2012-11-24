@@ -9,5 +9,11 @@ namespace PintTests
 {
     public class MockProgram : Program
     {
+        public List<string> LoggedErrors = new List<string>();
+
+        public override void WriteError(string message)
+        {
+            LoggedErrors.Add(message);
+        }
     }
 }

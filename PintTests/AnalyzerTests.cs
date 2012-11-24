@@ -36,14 +36,22 @@ namespace PintTests
         }
 
         [Fact]
-        public void Analyzer_FunctionCallMissingMandatory_Detected()
+        public void Analyzer_FormatError_FormatsCorrectly()
         {
-            a.Load(@"
-                function foo() { param([Parameter(Mandatory=$true)][string]$A) $A }
-                foo
-            ");
+            a.Load("+");
+            string message = a.FormatError(a.Errors.First());
+            Assert.Equal("(1,2,1,2): error MissingExpressionAfterOperator: Missing expression after unary operator '+'.", message);
+        }
 
-            //Assert.Equal(1, a.Warnings.ToList().Count);
+        [Fact]
+        public void Analyzer_FormatError_IncludesFilename()
+        {
+            using (TempFile t = new TempFile("+"))
+            {
+                a.LoadFile(t.FileName);
+                string message = a.FormatError(a.Errors.First());
+                Assert.True(message.StartsWith(t.FileName));
+            }
         }
     }
 }

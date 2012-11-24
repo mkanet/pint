@@ -57,10 +57,10 @@
     <Compile Include="FunctionHelperTests.cs" />
     <Compile Include="FunctionInfoTests.cs" />
     <Compile Include="FunctionTableTests.cs" />
-    <Compile Include="MandatoryParametersPassedAnalyzerTests.cs" />
     <Compile Include="MockProgram.cs" />
     <Compile Include="ProgramTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TempFile.cs" />
     <Compile Include="Utilities.cs" />
   </ItemGroup>
   <ItemGroup>
